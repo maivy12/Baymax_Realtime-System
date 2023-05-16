@@ -1,16 +1,14 @@
-# This is a sample Python script.
+print("Hello LAB2")
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import time
+from scheduler import *
+from task1 import *
+from task2 import *
+scheduler = Scheduler()
+scheduler.SCH_Init()
 
+task1 = Task1()
+task2 = Task2()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+task1.Task1_Run()
+task2.Task2_Run()
