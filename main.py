@@ -8,11 +8,11 @@ import requests
 scheduler = Scheduler()
 scheduler.SCH_Init()
 
-task1 = Task1(1)
-# task2 = Task2()
+task1a = Task1(0)
+task1b = Task1(1)
 
-scheduler.SCH_Add_Task(task1.Task1_Run, 1000, 5000)
-# scheduler.SCH_Add_Task(task2.Task2_Run, 2000, 4000)
+scheduler.SCH_Add_Task(task1a.Task1_Run, 1000, 5000)
+scheduler.SCH_Add_Task(task1b.Task1_Run, 2000, 4000)
 
 while True:
     scheduler.SCH_Update()
@@ -25,5 +25,6 @@ while True:
     if keyboard_input == 27:
         break
 
-task1.camera.release()
+task1b.camera.release()
+task1a.camera.release()
 cv2.destroyAllWindows()

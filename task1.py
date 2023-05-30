@@ -8,13 +8,11 @@ class Task1:
     class_names = None
     camera = None
     index = None
-    url = "http://172.16.135.131:8080/shot.jpg"
     def __init__(self,index):
         self.index = index
-        print("Init task 1")
+        print("Init task 1 on camera ",index)
+
         # Disable scientific notation for clarity
-
-
         np.set_printoptions(suppress=True)
 
         # Load the model
@@ -24,32 +22,22 @@ class Task1:
         self.class_names = open("labels.txt", "r").readlines()
 
         # CAMERA can be 0 or 1 based on default camera of your computer
-        self.camera = cv2.VideoCapture(0)
+        self.camera = cv2.VideoCapture(index)
+        
         return
 
     def Task1_Run(self):
-        print("Task 1 is activated!!!!")
+        print("Task 1, ", "camera ", self.index , " is activated!!!!")
         # Grab the webcamera's image.
         ret, image = self.camera.read()
 
-        if self.index == 1:
-            img_resp = requests.get(self.url)
-            img_arr = np.array(bytearray(img_resp.content), dtype=np.uint8)
-            image = cv2.imdecode(img_arr, -1)
-
-            # Resize the raw image into (224-height,224-width) pixels
-            image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
-
-            # img = imutils.resize(img, width=1000, height=1800)
-            cv2.imshow("Android_cam", image)
 
         
-        else:
-            # Resize the raw image into (224-height,224-width) pixels
-            image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
+        # Resize the raw image into (224-height,224-width) pixels
+        image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
 
-            # Show the image in a window
-            cv2.imshow("Webcam Image", image)
+        # Show the image in a window
+        #cv2.imshow("Webcam Image", image)
 
         # Make the image a numpy array and reshape it to the models input shape.
         image = np.asarray(image, dtype=np.float32).reshape(1, 224, 224, 3)
