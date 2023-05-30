@@ -31,6 +31,9 @@ class Scheduler:
         else:
             print("PrivateTasks are full!!!")
 
+    # def SCH_Update2(self):
+
+
     def SCH_Update(self):
         for i in range(0, len(self.SCH_tasks_G)):
             if self.SCH_tasks_G[i].Delay > 0:
