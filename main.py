@@ -3,11 +3,12 @@ import time
 from scheduler import *
 from task1 import *
 from task2 import *
+import requests
 
 scheduler = Scheduler()
 scheduler.SCH_Init()
 
-task1 = Task1()
+task1 = Task1(1)
 # task2 = Task2()
 
 scheduler.SCH_Add_Task(task1.Task1_Run, 1000, 5000)
@@ -16,6 +17,7 @@ scheduler.SCH_Add_Task(task1.Task1_Run, 1000, 5000)
 while True:
     scheduler.SCH_Update()
     scheduler.SCH_Dispatch_Tasks()
+    time.sleep(0.1)
     # Listen to the keyboard for presses.
     keyboard_input = cv2.waitKey(1)
 
